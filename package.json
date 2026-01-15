@@ -1,0 +1,15 @@
+{
+  "name": "easy-calculator",
+  "version": "1.0.0",
+  "description": "Easy to use desktop calculator app built using ElectronJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^latest"
+  }
+}
