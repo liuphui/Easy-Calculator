@@ -1,2 +1,2 @@
 # Easy-Calculator
-Easy to use calculator app
+Easy to use desktop calculator app built using ElectronJS
