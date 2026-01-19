@@ -96,13 +96,14 @@ function evaluate(){
         const result = Function(`"use strict"; return (${sanitized});`)();
         if (!Number.isFinite(result)) throw new Error("bad result");
 
-        setHistory(expr + "=");
+        setHistory(`${expr} =`);
         setScreen(formatDisplay(result));
         expr = String(result);
         lastResult = result;
     } catch {
         setHistory(expr);
         setScreen("Error");
+        expr = ""
         lastResult = null;
     }
 }
@@ -116,6 +117,7 @@ document.addEventListener("click", (e) => {
 
     if (action == "allclear") return allClear();
     if (action == "backspace") return backSpace();
+    if (action == "equals") return evaluate();
 
     if (value) {
         if (value == ".") return appendDot();
