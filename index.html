@@ -1,64 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Character encoding -->
-    <meta charset="UTF-8" />
 
-    <!-- Window title (shown in task switcher / title bar) -->
-    <title>Easy Calculator</title>
+<head>
+  <meta charset="UTF-8" />
+  <title>Easy Calculator</title>
+  <link rel="stylesheet" href="./dist/tailwind.css" />
+</head>
 
-    <!-- Load Tailwind CSS (generated locally, NOT CDN) -->
-    <link rel="stylesheet" href="./dist/tailwind.css" />
-  </head>
+<body class="drag-region h-screen bg-slate-900 flex items-center justify-center">
+  <!-- Calculator container -->
+  <div class="w-80 rounded-2xl bg-slate-800 text-white shadow-xl">
 
-  <body class="h-screen bg-slate-900 flex items-center justify-center">
-    <!-- Calculator container -->
-    <div class="w-80 rounded-2xl bg-slate-800 text-white shadow-xl">
+    <!-- Display area -->
+    <div class="p-4 text-right border-b border-slate-700">
+      <!-- Optional history (e.g. "12 × 3") -->
+      <div id="history" class="text-sm text-slate-400 min-h-5"></div>
 
-      <!-- Display area -->
-      <div class="p-4 text-right border-b border-slate-700">
-        <!-- Optional history (e.g. "12 × 3") -->
-        <div id="history" class="text-sm text-slate-400 min-h-5"></div>
-
-        <!-- Main display -->
-        <div
-          id="screen"
-          class="text-5xl font-semibold"
-        >
-          0
-        </div>
-      </div>
-
-      <!-- Buttons -->
-      <div class="grid grid-cols-4 gap-2 p-3">
-        <button class="btn btn-op" data-action="allclear">AC</button>
-        <button class="btn btn-op" data-action="percentage">%</button>
-        <button class="btn btn-op" data-action="backspace">⌫</button>
-        <button class="btn btn-op" data-value="/">÷</button>
-
-        <button class="btn" data-value="7">7</button>
-        <button class="btn" data-value="8">8</button>
-        <button class="btn" data-value="9">9</button>
-        <button class="btn btn-op" data-value="*">×</button>
-
-        <button class="btn" data-value="4">4</button>
-        <button class="btn" data-value="5">5</button>
-        <button class="btn" data-value="6">6</button>
-        <button class="btn btn-op" data-value="-">−</button>
-
-        <button class="btn" data-value="1">1</button>
-        <button class="btn" data-value="2">2</button>
-        <button class="btn" data-value="3">3</button>
-        <button class="btn btn-op" data-value="+">+</button>
-
-        <button class="btn" data-value="00">00</button>
-        <button class="btn" data-value="0">0</button>
-        <button class="btn" data-value=".">.</button>
-        <button class="btn btn-eq" data-action="equals">=</button>
+      <!-- Main display -->
+      <div id="screen" class="text-5xl font-semibold">
+        0
       </div>
     </div>
 
-    <!-- Calculator logic (renderer process) -->
-    <script src="./renderer.js"></script>
-  </body>
+    <!-- Buttons -->
+    <div class="titlebar">
+      <div class="relative z-10 px-3 text-xs text-slate-300">Easy Calculator</div>
+    </div>
+
+    <div class="grid grid-cols-4 gap-2 p-3">
+      <button class="btn btn-op" data-action="allclear">AC</button>
+      <button class="btn btn-op" data-action="percentage">%</button>
+      <button class="btn btn-op" data-action="backspace">⌫</button>
+      <button class="btn btn-op" data-value="/">÷</button>
+      <button class="btn" data-value="7">7</button>
+      <button class="btn" data-value="8">8</button>
+      <button class="btn" data-value="9">9</button>
+      <button class="btn btn-op" data-value="*">×</button>
+      <button class="btn" data-value="4">4</button>
+      <button class="btn" data-value="5">5</button>
+      <button class="btn" data-value="6">6</button>
+      <button class="btn btn-op" data-value="-">−</button>
+      <button class="btn" data-value="1">1</button>
+      <button class="btn" data-value="2">2</button>
+      <button class="btn" data-value="3">3</button>
+      <button class="btn btn-op" data-value="+">+</button>
+      <button class="btn" data-value="00">00</button>
+      <button class="btn" data-value="0">0</button>
+      <button class="btn" data-value=".">.</button>
+      <button class="btn btn-eq" data-action="equals">=</button>
+    </div>
+  </div>
+
+  <!-- Calculator logic (renderer process) -->
+  <script src="./renderer.js"></script>
+</body>
+
 </html>

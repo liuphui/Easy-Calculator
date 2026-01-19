@@ -14,7 +14,9 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 360,
     height: 520,
-    resizable: false
+    resizable: false,
+    autoHideMenuBar: true,
+    frame: false
   });
 
   win.loadFile(path.join(__dirname, "index.html"));
