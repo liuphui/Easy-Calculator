@@ -11,6 +11,16 @@
   <!-- Calculator container -->
   <div class="w-80 rounded-2xl bg-slate-800 text-white shadow-xl">
 
+    <div class="titlebar">
+      <div class="relative z-10 px-3 text-xs text-slate-300">Easy Calculator</div>
+
+      <div class="window-controls relative z-10 ml-auto flex items-center gap-2 px-2">
+        <button class="win-btn min" title="Minimize">—</button>
+        <button class="win-btn max" title="Maximize">□</button>
+        <button class="win-btn close" title="Close">✕</button>
+      </div>
+    </div>
+
     <!-- Display area -->
     <div class="p-4 text-right border-b border-slate-700">
       <!-- Optional history (e.g. "12 × 3") -->
@@ -23,10 +33,6 @@
     </div>
 
     <!-- Buttons -->
-    <div class="titlebar">
-      <div class="relative z-10 px-3 text-xs text-slate-300">Easy Calculator</div>
-    </div>
-
     <div class="grid grid-cols-4 gap-2 p-3">
       <button class="btn btn-op" data-action="allclear">AC</button>
       <button class="btn btn-op" data-action="percentage">%</button>
