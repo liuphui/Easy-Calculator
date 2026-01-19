@@ -26,8 +26,17 @@ function formatNumber(n) {
 }
 
 function sanitizeExpression(input) {
-    const cleaned = input.replace(/[^\d+\-*/%.()]/g, "");
-    return cleaned.replace(/%/g, "/100");
+  return input
+    // normalize display symbols → real operators
+    .replace(/−/g, "-")
+    .replace(/×/g, "*")
+    .replace(/÷/g, "/")
+
+    // remove anything else that is unsafe
+    .replace(/[^\d+\-*/%.()]/g, "")
+
+    // simple percent handling
+    .replace(/%/g, "/100");
 }
 
 function canAddDot() {
@@ -75,7 +84,7 @@ function appendOperator(op) {
     if (expr === "") return;
 
     if (/[+\-*/]$/.test(expr)) {
-        expr = expr.splice(0, -1) + op;
+        expr = expr.slice(0, -1) + op;
     } else {
         expr += op
     }
@@ -97,10 +106,11 @@ function evaluate(){
         if (!Number.isFinite(result)) throw new Error("bad result");
 
         setHistory(`${expr} =`);
-        setScreen(formatDisplay(result));
+        setScreen(formatNumber(result));
         expr = String(result);
         lastResult = result;
-    } catch {
+    } catch (e) {
+        console.log("EVALUATE FAILED", {expr, sanitized, error: e});
         setHistory(expr);
         setScreen("Error");
         expr = ""
