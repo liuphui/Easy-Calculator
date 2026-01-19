@@ -69,19 +69,42 @@ function appendDot() {
 }
 
 function appendOperator(op) {
-    if (!expr && lastResult != null) {
+    if (expr === "" && lastResult != null) {
         expr = String(lastResult);
     }
-    if (!expr) return;
+    if (expr === "") return;
 
-    if (isOperator(expr.splice(-1))) {
+    if (/[+\-*/]$/.test(expr)) {
         expr = expr.splice(0, -1) + op;
     } else {
         expr += op
     }
 
+    setScreen(expr)
     lastResult = null;
-    setScreen(expr);
+}
+
+function evaluate(){
+    if (!expr) return;
+
+    const sanitized = sanitizeExpression(expr);
+
+    // Don't evaluate if it ends with an operator
+    if (/[+\-*/.]$/.test(sanitized)) return;
+
+    try {
+        const result = Function(`"use strict"; return (${sanitized});`)();
+        if (!Number.isFinite(result)) throw new Error("bad result");
+
+        setHistory(expr + "=");
+        setScreen(formatDisplay(result));
+        expr = String(result);
+        lastResult = result;
+    } catch {
+        setHistory(expr);
+        setScreen("Error");
+        lastResult = null;
+    }
 }
 
 document.addEventListener("click", (e) => {
