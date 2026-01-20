@@ -2,8 +2,7 @@
 
 @layer components {
   .btn {
-    @apply bg-slate-700 rounded-xl py-3 text-lg
-           hover:bg-slate-600 active:scale-95 select-none;
+    @apply bg-slate-700 rounded-xl py-3 text-lg hover:bg-slate-600 active:scale-95 select-none;
   }
 
   .btn-op {
@@ -13,7 +12,7 @@
   .btn-eq {
     @apply text-white bg-linear-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-linear-to-br;
   }
-  
+
   .titlebar {
     @apply h-11 flex items-center relative
   }
@@ -23,7 +22,49 @@
     @apply absolute inset-0;
   }
 
-  .window-controls button {
-    @apply h-7 w-9 rounded-md text-sm leading-none hover:bg-white/10 active:scale-95 transition;
+  .titlebar {
+    @apply h-11 flex items-center gap-2 relative border-b border-slate-700 bg-slate-800/70;
+  }
+
+  .drag-overlay {
+    -webkit-app-region: drag;
+    @apply absolute inset-0;
+  }
+
+  .traffic-lights,
+  .tl-btn,
+  .titlebar>div {
+    -webkit-app-region: no-drag;
+  }
+
+  .traffic-lights {
+    @apply relative z-10 ml-auto flex items-center gap-[7px] pr-3;
+  }
+
+  .tl-btn {
+    @apply relative h-3 w-3 rounded-full transition shadow-sm;
+  }
+
+  .tl-close {
+    @apply bg-red-500;
+  }
+
+  .tl-min {
+    @apply bg-yellow-400;
+  }
+
+  .tl-max {
+    @apply bg-green-500;
+  }
+
+  .tl-icon {
+    @apply absolute inset-0 m-auto h-2 w-2 opacity-0 transition-opacity;
+    @apply stroke-black/60 fill-none;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+  }
+
+  .traffic-lights:hover .tl-icon {
+    @apply opacity-100;
   }
 }

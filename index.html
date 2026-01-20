@@ -12,12 +12,28 @@
   <div class="w-80 rounded-2xl bg-slate-800 text-white shadow-xl">
 
     <div class="titlebar">
+      <div class="drag-overlay"></div>
+
       <div class="relative z-10 px-3 text-xs text-slate-300">Easy Calculator</div>
 
-      <div class="window-controls relative z-10 ml-auto flex items-center gap-2 px-2">
-        <button class="win-btn min" title="Minimize">—</button>
-        <button class="win-btn max" title="Maximize">□</button>
-        <button class="win-btn close" title="Close">✕</button>
+      <div class="traffic-lights">
+        <button class="tl-btn tl-close" id="close" aria-label="Close">
+          <svg class="tl-icon" viewBox="0 0 10 10" aria-hidden="true">
+            <path d="M2 2 L8 8 M8 2 L2 8" />
+          </svg>
+        </button>
+
+        <button class="tl-btn tl-min" id="minimize" aria-label="Minimize">
+          <svg class="tl-icon" viewBox="0 0 10 10" aria-hidden="true">
+            <path d="M2 5 H8" />
+          </svg>
+        </button>
+
+        <button class="tl-btn tl-max" id="maximize" aria-label="Maximize">
+          <svg class="tl-icon" viewBox="0 0 10 10" aria-hidden="true">
+            <path d="M2.5 5 L5 2.5 L7.5 5" />
+          </svg>
+        </button>
       </div>
     </div>
 
