@@ -26,6 +26,10 @@ function setHistory(history) {
     historyEl.textContent = history;
 }
 
+function setText(value) {
+    screenEl.textContent = value;
+}
+
 function isOperator(ch) {
     return ch === "+" || ch === "-" || ch === "/" || ch === "*";
 }
@@ -60,7 +64,7 @@ function allClear() {
     expr = "";
     lastResult = null;
     setHistory("");
-    setText(0);
+    setText("0");
 }
 
 function backSpace() {
