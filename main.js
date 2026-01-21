@@ -7,7 +7,7 @@ try {
   // Ignore if not installed or in production
 }
 
-const { app, BrowserWindow } = require("electron");
+const { app, ipcMain, BrowserWindow } = require("electron");
 const path = require("path");
 
 function createWindow() {
@@ -16,7 +16,12 @@ function createWindow() {
     height: 520,
     resizable: false,
     autoHideMenuBar: true,
-    frame: false
+    frame: false,
+    webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
   });
 
   win.loadFile(path.join(__dirname, "index.html"));
@@ -32,4 +37,18 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
+});
+
+ipcMain.on("win:minimize", () => {
+  BrowserWindow.getFocusedWindow()?.minimize()
+});
+
+ipcMain.on("win:maximize", () => {
+  const win = BrowserWindow.getFocusedWindow();
+  if (!win) return;
+  win.isMaximized() ? win.unmaximize() : win.maximize();
+});
+
+ipcMain.on("win:close", () => {
+  BrowserWindow.getFocusedWindow()?.close()
 });

@@ -8,7 +8,7 @@ document.getElementById("minimize")?.addEventListener("click", () => {
 })
 
 document.getElementById("maximize")?.addEventListener("click", () => {
-    window.windowControls?.maximise?.();
+    window.windowControls?.maximize?.();
 })
 
 document.getElementById("close")?.addEventListener("click", () => {
