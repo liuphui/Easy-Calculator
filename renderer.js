@@ -102,11 +102,21 @@ function appendOperator(op) {
     if (/[+\-*/]$/.test(expr)) {
         expr = expr.slice(0, -1) + op;
     } else {
-        expr += op
+        expr += op;
     }
 
-    setScreen(expr)
+    setScreen(expr);
     lastResult = null;
+}
+
+function appendPercentage(){
+    if (!expr) return;
+
+    const n = Number(expr);
+    if (!Number.isFinite(n)) return;
+
+    expr = String(n / 100);
+    setScreen(expr);
 }
 
 function evaluate(){
@@ -129,7 +139,7 @@ function evaluate(){
         console.log("EVALUATE FAILED", {expr, sanitized, error: e});
         setHistory(expr);
         setScreen("Error");
-        expr = ""
+        expr = "";
         lastResult = null;
     }
 }
@@ -147,6 +157,7 @@ document.addEventListener("click", (e) => {
 
     if (value) {
         if (value == ".") return appendDot();
+        if (value == "percentage") return appendPercentage();
         if (isOperator(value)) return appendOperator(value);
         return appendDigits(value);
     }
